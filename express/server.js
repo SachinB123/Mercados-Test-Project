@@ -3,8 +3,10 @@ const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
 
 const app = express();
-const apiRoute = "/api";
-// const apiRoute = "/.netlify/functions/server"; // only on for netlify
+const cors = require("cors");
+// app.use(cors()); // only on local
+// const apiRoute = ""; // only on local
+const apiRoute = "/.netlify/functions/server"; // only on for netlify
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -20,4 +22,4 @@ router.get("/api/test", (req, res) => {
 app.use(apiRoute, router);
 
 module.exports = app;
-// module.exports.handler = serverless(app); // only on for netlify
+module.exports.handler = serverless(app); // only on for netlify
