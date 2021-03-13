@@ -2,9 +2,10 @@
   "name": "y",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "functions/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cd theme-customization && npm install && ng build --prod && cd ../ && netlify-lambda build express",
+    "start": "nodemon server.js"
   },
   "author": "Sachin",
   "license": "MIT",
@@ -12,6 +13,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
-    "serverless-http": "^2.7.0"
+    "serverless-http": "^2.7.0",
+    "netlify-lambda": "2.0.3"
   }
 }
