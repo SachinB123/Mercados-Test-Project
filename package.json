@@ -4,7 +4,7 @@
   "description": "",
   "main": "functions/server.js",
   "scripts": {
-    "build": "cd angular-frontend && npm install && ng build --prod && cd ../ && netlify-lambda build express",
+    "build": "cd angular-frontend && npm install && pwd && ng build --prod && cd ../ && netlify-lambda build express",
     "start": "nodemon server.js"
   },
   "author": "Sachin",
