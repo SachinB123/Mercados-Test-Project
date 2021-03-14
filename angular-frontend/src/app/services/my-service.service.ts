@@ -13,7 +13,7 @@ export class MyServiceService {
     if (this._hostName === 'localhost' || this._hostName === '127.0.0.1') {
         this._serverBaseUrl = 'http://localhost:3000';
     } else {
-        this._serverBaseUrl = 'window.location.origin';
+        this._serverBaseUrl = window.location.origin;
     }
   } 
 
