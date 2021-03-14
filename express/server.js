@@ -15,36 +15,38 @@ app.use(bodyParser.json());
 
 const router = express.Router();
 
+/*See why we need LAMBDA_TASK_ROOT for netlify - https://answers.netlify.com/t/hosting-a-file-along-with-my-function/1527/19 */
+const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, 'sales_data_ABC.csv'):path.resolve(__dirname, '../backend-asset', 'sales_data_ABC.csv')
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
-    res.status(200)
-                .json({
-                    // message: 'Original CSV data fetch successfull',
-                    // data: idArray
-                    lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
-                    dirnameL: path.resolve('sales_data_ABC.csv') 
-                });
-    // console.log
-    // fs.createReadStream(path.resolve(__dirname, './backend-asset', 'sales_data_ABC.csv'))
-    //     .pipe(csv.parse({
-    //         headers: true
-    //     }))
-    //     .on('error', error => console.error(error))
-    //     .on('data', row => {
-    //         console.log(row);
-    //         idArray.push(row); //Add it to the array
-    //     })
-    //     .on('end', rowCount => {
-    //         console.log(`Parsed ${rowCount} rows`);
-
-    //         res
-    //             .status(200)
+    // res.status(200)
     //             .json({
-    //                 message: 'Original CSV data fetch successfull',
-    //                 data: idArray
+    //                 // message: 'Original CSV data fetch successfull',
+    //                 // data: idArray
+    //                 lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
+    //                 dirnameL: path.resolve('sales_data_ABC.csv') 
     //             });
-    //     });
+    
+    fs.createReadStream(resolvedLAMBDAPath)
+        .pipe(csv.parse({
+            headers: true
+        }))
+        .on('error', error => console.error(error))
+        .on('data', row => {
+            console.log(row);
+            idArray.push(row); //Add it to the array
+        })
+        .on('end', rowCount => {
+            console.log(`Parsed ${rowCount} rows`);
+
+            res
+                .status(200)
+                .json({
+                    message: 'Original CSV data fetch successfull',
+                    data: idArray
+                });
+        });
 });
 
 router.post("/api/setcsvdata", (req, res) => {
@@ -53,7 +55,7 @@ router.post("/api/setcsvdata", (req, res) => {
         const csvStream = csv.format({
             headers: true
         });
-        const ws = fs.createWriteStream(path.resolve(__dirname, '../backend-asset', 'sales_data_ABC.csv'));
+        const ws = fs.createWriteStream(resolvedLAMBDAPath);
 
         csvStream.pipe(ws).on("finish", () => {
             console.log("End of writing");
