@@ -18,25 +18,32 @@ const router = express.Router();
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
-    fs.createReadStream(path.resolve(__dirname, './backend-asset', 'sales_data_ABC.csv'))
-        .pipe(csv.parse({
-            headers: true
-        }))
-        .on('error', error => console.error(error))
-        .on('data', row => {
-            console.log(row);
-            idArray.push(row); //Add it to the array
-        })
-        .on('end', rowCount => {
-            console.log(`Parsed ${rowCount} rows`);
-
-            res
-                .status(200)
+    res.status(200)
                 .json({
-                    message: 'Original CSV data fetch successfull',
-                    data: idArray
+                    // message: 'Original CSV data fetch successfull',
+                    // data: idArray
+                    dirnameL: __dirname 
                 });
-        });
+    // console.log
+    // fs.createReadStream(path.resolve(__dirname, './backend-asset', 'sales_data_ABC.csv'))
+    //     .pipe(csv.parse({
+    //         headers: true
+    //     }))
+    //     .on('error', error => console.error(error))
+    //     .on('data', row => {
+    //         console.log(row);
+    //         idArray.push(row); //Add it to the array
+    //     })
+    //     .on('end', rowCount => {
+    //         console.log(`Parsed ${rowCount} rows`);
+
+    //         res
+    //             .status(200)
+    //             .json({
+    //                 message: 'Original CSV data fetch successfull',
+    //                 data: idArray
+    //             });
+    //     });
 });
 
 router.post("/api/setcsvdata", (req, res) => {
