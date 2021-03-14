@@ -4,7 +4,7 @@
   "description": "",
   "main": "functions/server.js",
   "scripts": {
-    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && netlify-lambda build express && ls && cd ./express && zip -r ../functions/sales_data_ABC.csv.zip sales_data_ABC.csv && cd ../functions && ls",
+    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && netlify-lambda build express && ls && cd ./express && zip -r ../functions/csvfile.zip csvfile && cd ../functions && ls",
     "start": "nodemon server.js"
   },
   "author": "Sachin",
