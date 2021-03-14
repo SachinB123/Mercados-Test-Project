@@ -4,13 +4,14 @@
   "description": "",
   "main": "functions/server.js",
   "scripts": {
-    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && netlify-lambda build express && ls && cd ./express && zip -r ../functions/csvfile.zip csvfile && cd ../functions && ls",
+    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && netlify-lambda build express --config ./webpack.functions.js && ls && cd ./functions && ls",
     "start": "nodemon server.js"
   },
   "author": "Sachin",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "copy-webpack-plugin": "^8.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "fast-csv": "^4.3.6",
