@@ -21,33 +21,33 @@ const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
-    // res.status(200)
-    //             .json({
-    //                 // message: 'Original CSV data fetch successfull',
-    //                 // data: idArray
-    //                 lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
-    //                 dirnameL: path.resolve('sales_data_ABC.csv') 
-    //             });
-    
-    fs.createReadStream(resolvedLAMBDAPath)
-        .pipe(csv.parse({
-            headers: true
-        }))
-        .on('error', error => console.error(error))
-        .on('data', row => {
-            console.log(row);
-            idArray.push(row); //Add it to the array
-        })
-        .on('end', rowCount => {
-            console.log(`Parsed ${rowCount} rows`);
-
-            res
-                .status(200)
+    res.status(200)
                 .json({
-                    message: 'Original CSV data fetch successfull',
-                    data: idArray
+                    // message: 'Original CSV data fetch successfull',
+                    // data: idArray
+                    lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
+                    dirnameL: path.resolve('sales_data_ABC.csv') 
                 });
-        });
+    
+    // fs.createReadStream(resolvedLAMBDAPath)
+    //     .pipe(csv.parse({
+    //         headers: true
+    //     }))
+    //     .on('error', error => console.error(error))
+    //     .on('data', row => {
+    //         console.log(row);
+    //         idArray.push(row); //Add it to the array
+    //     })
+    //     .on('end', rowCount => {
+    //         console.log(`Parsed ${rowCount} rows`);
+
+    //         res
+    //             .status(200)
+    //             .json({
+    //                 message: 'Original CSV data fetch successfull',
+    //                 data: idArray
+    //             });
+    //     });
 });
 
 router.post("/api/setcsvdata", (req, res) => {
