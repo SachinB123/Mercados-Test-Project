@@ -4,7 +4,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "./backend-asset/sales_data_ABC.csv", to: "./functions/" }
+        { from: "../backend-asset/sales_data_ABC.csv", to: "../functions/" }
       ],
     }),
   ],
