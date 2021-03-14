@@ -33,8 +33,8 @@ router.get("/api/getcsvdata", (req, res) => {
                     allInLAMBDAROOT:fs.readdirSync(process.env.LAMBDA_TASK_ROOT),
                     allInLAMBDAROOTSRC:fs.readdirSync(process.env.LAMBDA_TASK_ROOT+'/src'),
                     allInLAMBDAROOTSRC2:fs.readdirSync('/var/task/src/'),
-                    allInTMP1:fs.readdirSync('./tmp'),
-                    allInTMP2:fs.readdirSync('./tmp/'),
+                    // allInTMP1:fs.readdirSync('./tmp'),
+                    // allInTMP2:fs.readdirSync('./tmp/'),
                     allInTMP3:fs.readdirSync('/tmp/'),
                     allInTMP4:fs.readdirSync('/tmp'),
 
