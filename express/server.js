@@ -29,6 +29,7 @@ router.get("/api/getcsvdata", (req, res) => {
                     // data: idArray
                     lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
                     dirnameL: path.resolve('sales_data_ABC.csv'),
+                    fileNameL: __filename,
                     allInCurrentDir:fs.readdirSync(__dirname),
                     allInLAMBDAROOT:fs.readdirSync(process.env.LAMBDA_TASK_ROOT),
                     allInLAMBDAROOTSRC:fs.readdirSync(process.env.LAMBDA_TASK_ROOT+'/src'),
@@ -36,7 +37,11 @@ router.get("/api/getcsvdata", (req, res) => {
                     // allInTMP1:fs.readdirSync('./tmp'),
                     // allInTMP2:fs.readdirSync('./tmp/'),
                     allInOpt1:fs.readdirSync('/opt/'),
-                    // allInOpt2:fs.readdirSync('/opt/build/repo'),
+                    allInSrv:fs.readdirSync('/srv/'),
+                    allInRoot:fs.readdirSync('/root/'),
+                    allInDev:fs.readdirSync('/dev/'),
+                    allInBin:fs.readdirSync('/bin/'),
+                    allInMedia:fs.readdirSync('/media/')
 
                 });
     
