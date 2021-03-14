@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 /*See why we need LAMBDA_TASK_ROOT for netlify - https://answers.netlify.com/t/hosting-a-file-along-with-my-function/1527/19 */
-const fileName = "./functions/sales_data_ABC.csv"
-const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName):path.resolve(__dirname, fileName)
+const fileName = "./functions/sales_data_ABC.csv";
+const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, "sales_data_ABC.csv"):path.resolve(__dirname, fileName)
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
@@ -29,25 +29,25 @@ router.get("/api/getcsvdata", (req, res) => {
                     dirnameL: path.resolve('sales_data_ABC.csv') 
                 });
     
-    // fs.createReadStream(resolvedLAMBDAPath)
-    //     .pipe(csv.parse({
-    //         headers: true
-    //     }))
-    //     .on('error', error => console.error(error))
-    //     .on('data', row => {
-    //         console.log(row);
-    //         idArray.push(row); //Add it to the array
-    //     })
-    //     .on('end', rowCount => {
-    //         console.log(`Parsed ${rowCount} rows`);
+    fs.createReadStream(resolvedLAMBDAPath)
+        .pipe(csv.parse({
+            headers: true
+        }))
+        .on('error', error => console.error(error))
+        .on('data', row => {
+            console.log(row);
+            idArray.push(row); //Add it to the array
+        })
+        .on('end', rowCount => {
+            console.log(`Parsed ${rowCount} rows`);
 
-    //         res
-    //             .status(200)
-    //             .json({
-    //                 message: 'Original CSV data fetch successfull',
-    //                 data: idArray
-    //             });
-    //     });
+            res
+                .status(200)
+                .json({
+                    message: 'Original CSV data fetch successfull',
+                    data: idArray
+                });
+        });
 });
 
 router.post("/api/setcsvdata", (req, res) => {
