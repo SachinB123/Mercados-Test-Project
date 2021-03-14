@@ -18,7 +18,7 @@ const router = express.Router();
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
-    fs.createReadStream(path.resolve(__dirname, '../backend-asset', 'sales_data_ABC.csv'))
+    fs.createReadStream(path.resolve(__dirname, './backend-asset', 'sales_data_ABC.csv'))
         .pipe(csv.parse({
             headers: true
         }))
