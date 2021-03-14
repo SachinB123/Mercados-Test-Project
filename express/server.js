@@ -36,7 +36,7 @@ router.get("/api/getcsvdata", (req, res) => {
                     // allInTMP1:fs.readdirSync('./tmp'),
                     // allInTMP2:fs.readdirSync('./tmp/'),
                     allInOpt1:fs.readdirSync('/opt/'),
-                    allInOpt2:fs.readdirSync('/opt/build/repo'),
+                    // allInOpt2:fs.readdirSync('/opt/build/repo'),
 
                 });
     
