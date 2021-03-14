@@ -22,6 +22,7 @@ router.get("/api/getcsvdata", (req, res) => {
                 .json({
                     // message: 'Original CSV data fetch successfull',
                     // data: idArray
+                    lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
                     dirnameL: path.resolve('sales_data_ABC.csv') 
                 });
     // console.log
