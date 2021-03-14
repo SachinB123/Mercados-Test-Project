@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 /*See why we need LAMBDA_TASK_ROOT for netlify - https://answers.netlify.com/t/hosting-a-file-along-with-my-function/1527/19 */
-const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve('sales_data_ABC.csv'):path.resolve(__dirname, '../backend-asset', 'sales_data_ABC.csv')
+const fileName = "./express/sales_data_ABC.csv"
+const resolvedLAMBDAPath = (process.env.LAMBDA_TASK_ROOT)? path.resolve(process.env.LAMBDA_TASK_ROOT, fileName):path.resolve(__dirname, fileName)
 router.get("/api/getcsvdata", (req, res) => {
 
     let idArray = [];
