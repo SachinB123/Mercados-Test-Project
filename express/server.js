@@ -22,7 +22,7 @@ router.get("/api/getcsvdata", (req, res) => {
                 .json({
                     // message: 'Original CSV data fetch successfull',
                     // data: idArray
-                    dirnameL: __dirname 
+                    dirnameL: path.resolve('sales_data_ABC.csv') 
                 });
     // console.log
     // fs.createReadStream(path.resolve(__dirname, './backend-asset', 'sales_data_ABC.csv'))
