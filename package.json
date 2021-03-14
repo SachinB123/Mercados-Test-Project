@@ -4,8 +4,9 @@
   "description": "",
   "main": "functions/server.js",
   "scripts": {
-    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && netlify-lambda build express --config ./webpack.functions.js && ls && pwd && cd ./functions && ls",
-    "start": "nodemon server.js"
+    "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && ls && pwd && cd ./functions && ls",
+    "start": "nodemon server.js",
+    "start:lambda": "netlify-lambda serve express --config ./webpack.functions.js"
   },
   "author": "Sachin",
   "license": "MIT",
