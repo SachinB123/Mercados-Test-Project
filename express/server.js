@@ -29,28 +29,30 @@ router.get("/api/getcsvdata", (req, res) => {
                     // data: idArray
                     lambdaTaskRoot: process.env.LAMBDA_TASK_ROOT,
                     dirnameL: path.resolve('sales_data_ABC.csv'),
-                    allInCurrentDir:fs.readdirSync(__dirname) 
+                    allInCurrentDir:fs.readdirSync(__dirname),
+                    allInLAMBDAROOT:fs.readdirSync(process.env.LAMBDA_TASK_ROOT)
+
                 });
     
-    fs.createReadStream(resolvedLAMBDAPath)
-        .pipe(csv.parse({
-            headers: true
-        }))
-        .on('error', error => console.error(error))
-        .on('data', row => {
-            console.log(row);
-            idArray.push(row); //Add it to the array
-        })
-        .on('end', rowCount => {
-            console.log(`Parsed ${rowCount} rows`);
+    // fs.createReadStream(resolvedLAMBDAPath)
+    //     .pipe(csv.parse({
+    //         headers: true
+    //     }))
+    //     .on('error', error => console.error(error))
+    //     .on('data', row => {
+    //         console.log(row);
+    //         idArray.push(row); //Add it to the array
+    //     })
+    //     .on('end', rowCount => {
+    //         console.log(`Parsed ${rowCount} rows`);
 
-            res
-                .status(200)
-                .json({
-                    message: 'Original CSV data fetch successfull',
-                    data: idArray
-                });
-        });
+    //         res
+    //             .status(200)
+    //             .json({
+    //                 message: 'Original CSV data fetch successfull',
+    //                 data: idArray
+    //             });
+    //     });
 });
 
 router.post("/api/setcsvdata", (req, res) => {
