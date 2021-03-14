@@ -18,7 +18,8 @@ export class MyServiceService {
     headers = headers.append('Content-Control', 'no-cache');
     headers = headers.append('Pragma', 'no-cache');
 
-    const url = 'http://localhost:3000/api/test';
+    // const url = 'http://localhost:3000/api/test'; // only local
+    const url = window.location.origin + '/.netlify/functions/server' + '/api/test';
     return this.http.get(url, {headers});
   }
 }
