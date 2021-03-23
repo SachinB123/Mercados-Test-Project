@@ -2,11 +2,14 @@
   "name": "y",
   "version": "1.0.0",
   "description": "",
-  "main": "functions/server.js",
+  "main": "server.js",
   "scripts": {
     "build": "cd angular-frontend && npm install && pwd && ./node_modules/.bin/ng build --prod && cd ../ && ls && pwd && cd ./functions && ls",
     "start": "nodemon server.js",
     "start:lambda": "netlify-lambda serve express --config ./webpack.functions.js"
+  },
+  "engines": {
+    "node": ">=10.15.3 <=10.16"
   },
   "author": "Sachin",
   "license": "MIT",
