@@ -9,7 +9,7 @@
     "start:lambda": "netlify-lambda serve express --config ./webpack.functions.js"
   },
   "engines": {
-    "node": ">=10.15.3 <=10.16"
+    "node": "10.15.3"
   },
   "author": "Sachin",
   "license": "MIT",
